@@ -257,7 +257,7 @@ let currentUser = null;
 let entries = {}; // {id: entryObj}
 let gdriveToken = null;
 let gdriveFileId = null;
-const GDRIVE_CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID'; // User replaces this
+const GDRIVE_CLIENT_ID = '950704118337-14ppm2ovunjr1fg0deutr64id3cesui3.apps.googleusercontent.com'; // User replaces this
 
 function hashStr(s){
   let h=0; for(let i=0;i<s.length;i++){h=Math.imul(31,h)+s.charCodeAt(i)|0;} return (h>>>0).toString(36);
@@ -344,7 +344,7 @@ async function handleLoginFixed(){/* see handleLogin above */}
 // ─── GOOGLE DRIVE ───
 function connectGDrive(){
   // Check if client ID configured
-  if(GDRIVE_CLIENT_ID==='YOUR_GOOGLE_CLIENT_ID'){
+  if(GDRIVE_CLIENT_ID==='950704118337-14ppm2ovunjr1fg0deutr64id3cesui3.apps.googleusercontent.com'){
     alert('To use Google Drive sync:\n\n1. Go to console.cloud.google.com\n2. Create a project → Enable Google Drive API\n3. Create OAuth 2.0 Client ID (Web App)\n4. Add your file URL to Authorised Origins\n5. Replace YOUR_GOOGLE_CLIENT_ID in this file\n\nSee the README section at the bottom of this file for details.');
     return;
   }
