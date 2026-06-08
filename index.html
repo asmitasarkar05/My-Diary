@@ -348,20 +348,49 @@ function connectGDrive(){
     alert('To use Google Drive sync:\n\n1. Go to console.cloud.google.com\n2. Create a project → Enable Google Drive API\n3. Create OAuth 2.0 Client ID (Web App)\n4. Add your file URL to Authorised Origins\n5. Replace 950704118337-14ppm2ovunjr1fg0deutr64id3cesui3.apps.googleusercontent.com in this file\n\nSee the README section at the bottom of this file for details.');
     return;
   }
-  const params=new URLSearchParams({client_id:GDRIVE_CLIENT_ID,redirect_uri:location.origin+location.pathname,response_type:'token',scope:'https://www.googleapis.com/auth/drive.appdata',prompt:'select_account'});
+  const params=new URLSearchParams({client_id:GDRIVE_CLIENT_ID,redirect_uri:location.origin+location.pathname,response_type:'token',scope:'https://www.googleapis.com/auth/drive.appdata https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',prompt:'select_account'});
   window.location='https://accounts.google.com/o/oauth2/v2/auth?'+params;
 }
 
-function checkGDriveCallback(){
+async function checkGDriveCallback(){
   const hash=location.hash;
   if(!hash.includes('access_token='))return;
   const p=new URLSearchParams(hash.slice(1));
   gdriveToken=p.get('access_token');
   history.replaceState(null,'',location.pathname);
-  document.getElementById('driveStatus').className='gdrive-status connected';
-  document.getElementById('driveStatus').textContent='⬤ Drive';
-  showToast('Google Drive connected!');
-  loadFromDrive();
+
+  // Get user's Google profile to use as their identity
+  try{
+    const res=await fetch('https://www.googleapis.com/oauth2/v3/userinfo',{headers:{Authorization:'Bearer '+gdriveToken}});
+    const profile=await res.json();
+    const googleEmail=profile.email||'google_user';
+    const googleName=profile.name||googleEmail;
+
+    // Auto-register/login this Google user
+    currentUser='google:'+googleEmail;
+    const usersRaw=localStorage.getItem('dd_users');
+    const users=usersRaw?JSON.parse(usersRaw):{};
+    const ukey='dd_u_'+hashStr(currentUser);
+    if(!users[ukey]){
+      users[ukey]={hash:hashStr('gdrive_auth'), googleEmail};
+      localStorage.setItem('dd_users',JSON.stringify(users));
+    }
+
+    // Load any locally cached entries
+    const raw=localStorage.getItem('dd_data_'+hashStr(currentUser));
+    entries=raw?JSON.parse(raw):{};
+
+    // Open the app
+    openApp();
+    document.getElementById('driveStatus').className='gdrive-status connected';
+    document.getElementById('driveStatus').textContent='⬤ Drive ('+googleName.split(' ')[0]+')';
+    showToast('Signed in as '+googleName+' ✓');
+
+    // Now load from Drive (may override local entries)
+    loadFromDrive();
+  }catch(e){
+    showToast('Google sign-in failed: '+e.message);
+  }
 }
 
 async function loadFromDrive(){
