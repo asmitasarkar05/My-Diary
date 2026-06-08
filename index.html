@@ -5,166 +5,143 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#1a1a18">
 <title>Dear Diary</title>
-<link rel="manifest" href="data:application/json,{&quot;name&quot;:&quot;Dear Diary&quot;,&quot;short_name&quot;:&quot;Diary&quot;,&quot;display&quot;:&quot;standalone&quot;,&quot;background_color&quot;:&quot;#faf8f5&quot;,&quot;theme_color&quot;:&quot;#2c2c2a&quot;,&quot;start_url&quot;:&quot;.&quot;}">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #faf8f5; --bg2: #f1efe8; --bg3: #e8e5de;
-  --card: #ffffff; --border: #d3d1c7; --border2: #b4b2a9;
-  --text: #2c2c2a; --text2: #5f5e5a; --text3: #888780;
-  --accent: #2c2c2a; --accent-fg: #faf8f5;
-  --danger: #a32d2d; --danger-bg: #fcebeb;
-  --success: #0f6e56; --success-bg: #e1f5ee;
-  --info: #185fa5; --info-bg: #e6f1fb;
-  --radius: 10px; --radius-lg: 16px;
-  --shadow: 0 2px 12px rgba(0,0,0,0.07);
-}
-[data-theme="dark"] {
-  --bg: #1a1a18; --bg2: #242420; --bg3: #2c2c28;
-  --card: #1f1f1c; --border: #3a3a36; --border2: #4a4a45;
-  --text: #f0ede8; --text2: #b4b2a9; --text3: #6e6d69;
-  --accent: #e8e5de; --accent-fg: #1a1a18;
-  --shadow: 0 2px 12px rgba(0,0,0,0.3);
-}
+:root{--bg:#faf8f5;--bg2:#f1efe8;--bg3:#e8e5de;--card:#fff;--border:#d3d1c7;--border2:#b4b2a9;--text:#2c2c2a;--text2:#5f5e5a;--text3:#888780;--accent:#2c2c2a;--accent-fg:#faf8f5;--danger:#a32d2d;--danger-bg:#fcebeb;--success:#0f6e56;--success-bg:#e1f5ee;--radius:10px;--radius-lg:16px;--shadow:0 2px 12px rgba(0,0,0,.07)}
+[data-theme=dark]{--bg:#1a1a18;--bg2:#242420;--bg3:#2c2c28;--card:#1f1f1c;--border:#3a3a36;--border2:#4a4a45;--text:#f0ede8;--text2:#b4b2a9;--text3:#6e6d69;--accent:#e8e5de;--accent-fg:#1a1a18;--shadow:0 2px 12px rgba(0,0,0,.3)}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:background 0.2s,color 0.2s}
-button{font-family:'DM Sans',sans-serif;cursor:pointer;transition:all 0.15s}
-input,textarea,select{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:0.6rem 0.85rem;font-size:14px;outline:none;transition:border 0.15s}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:background .2s,color .2s}
+button{font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .15s}
+input,textarea{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:.6rem .85rem;font-size:14px;outline:none;transition:border .15s}
 input:focus,textarea:focus{border-color:var(--border2)}
-.screen{display:none;min-height:100vh}
-.screen.active{display:flex;flex-direction:column}
+.screen{display:none;min-height:100vh}.screen.active{display:flex;flex-direction:column}
 
-/* ── LOGIN ── */
+/* LOGIN */
 #loginScreen{align-items:center;justify-content:center;background:var(--bg)}
 .login-wrap{width:100%;max-width:360px;padding:1.5rem}
 .login-box{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2.5rem 2rem;box-shadow:var(--shadow)}
-.logo{font-family:'Playfair Display',serif;font-size:2rem;color:var(--text);text-align:center;margin-bottom:0.2rem}
+.logo{font-family:'Playfair Display',serif;font-size:2rem;color:var(--text);text-align:center;margin-bottom:.2rem}
 .logo-sub{font-size:12px;color:var(--text3);text-align:center;margin-bottom:2rem}
-.login-box input{width:100%;margin-bottom:0.75rem;background:var(--bg2)}
-.btn-primary{width:100%;padding:0.72rem;background:var(--accent);color:var(--accent-fg);border:none;border-radius:var(--radius);font-size:14px;font-weight:500;margin-top:0.25rem}
-.btn-primary:hover{opacity:0.85}
-.login-err{font-size:12px;color:var(--danger);text-align:center;margin-top:0.6rem;min-height:18px}
+.login-box input{width:100%;margin-bottom:.75rem}
+.btn-primary{width:100%;padding:.72rem;background:var(--accent);color:var(--accent-fg);border:none;border-radius:var(--radius);font-size:14px;font-weight:500;margin-top:.25rem}
+.btn-primary:hover{opacity:.85}
+.login-err{font-size:12px;color:var(--danger);text-align:center;margin-top:.6rem;min-height:18px}
 .login-toggle{font-size:12px;color:var(--text3);text-align:center;margin-top:1rem;cursor:pointer;text-decoration:underline}
 .theme-bar{display:flex;justify-content:center;gap:8px;margin-bottom:1.5rem}
 .theme-pill{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:12px;color:var(--text2)}
 .theme-pill.active{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
-.gdrive-btn{width:100%;padding:0.65rem;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);font-size:13px;color:var(--text2);display:flex;align-items:center;justify-content:center;gap:8px;margin-top:0.75rem}
+.gdrive-btn{width:100%;padding:.65rem;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);font-size:13px;color:var(--text2);display:flex;align-items:center;justify-content:center;gap:8px;margin-top:.75rem}
 .gdrive-btn:hover{border-color:var(--border2);color:var(--text)}
 .gdrive-btn svg{width:16px;height:16px;flex-shrink:0}
 .divider{display:flex;align-items:center;gap:10px;margin:1rem 0;color:var(--text3);font-size:12px}
 .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
 
-/* ── APP ── */
+/* APP */
 #appScreen{background:var(--bg)}
-.topbar{display:flex;align-items:center;justify-content:space-between;padding:0.85rem 1.25rem;background:var(--card);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;box-shadow:var(--shadow)}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.25rem;background:var(--card);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;box-shadow:var(--shadow)}
 .topbar-logo{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--text)}
 .topbar-right{display:flex;gap:6px;align-items:center}
 .icon-btn{background:none;border:1px solid var(--border);border-radius:8px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--text2)}
 .icon-btn:hover{background:var(--bg2);color:var(--text)}
 .app-body{display:flex;flex:1;height:calc(100vh - 55px);overflow:hidden}
 
-/* ── SIDEBAR ── */
+/* SIDEBAR */
 .sidebar{width:240px;min-width:240px;background:var(--card);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
-.sidebar-top{padding:0.85rem 0.85rem 0.6rem}
-.btn-new{width:100%;padding:0.6rem;background:var(--accent);color:var(--accent-fg);border:none;border-radius:var(--radius);font-size:13px;font-weight:500;display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:0.6rem}
-.btn-new:hover{opacity:0.85}
+.sidebar-top{padding:.85rem .85rem .6rem}
+.btn-new{width:100%;padding:.6rem;background:var(--accent);color:var(--accent-fg);border:none;border-radius:var(--radius);font-size:13px;font-weight:500;display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:.6rem}
+.btn-new:hover{opacity:.85}
 .tab-row{display:flex;gap:4px;background:var(--bg2);border-radius:8px;padding:3px}
-.tab-btn{flex:1;padding:0.35rem;background:none;border:none;border-radius:6px;font-size:12px;color:var(--text3)}
+.tab-btn{flex:1;padding:.35rem;background:none;border:none;border-radius:6px;font-size:12px;color:var(--text3)}
 .tab-btn.active{background:var(--card);color:var(--text);font-weight:500;box-shadow:var(--shadow)}
 .sidebar-scroll{flex:1;overflow-y:auto;padding:0 0 1rem}
 
-/* ── CALENDAR ── */
-.cal-wrap{padding:0.75rem 0.85rem}
-.cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.65rem}
+/* DRIVE BANNER */
+.drive-banner{margin:.6rem .85rem;padding:.5rem .75rem;background:var(--bg2);border:1px solid var(--border);border-radius:8px;font-size:11px;color:var(--text3);display:flex;align-items:center;gap:6px;cursor:pointer}
+.drive-banner:hover{border-color:var(--border2);color:var(--text)}
+.drive-banner.ok{background:var(--success-bg);color:var(--success);border-color:var(--success)}
+
+/* CALENDAR */
+.cal-wrap{padding:.75rem .85rem}
+.cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.65rem}
 .cal-title{font-size:13px;font-weight:500;color:var(--text)}
 .cal-nav{background:none;border:none;color:var(--text3);font-size:16px;padding:2px 6px;border-radius:6px}
 .cal-nav:hover{background:var(--bg2);color:var(--text)}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
 .cal-dow{font-size:10px;font-weight:500;color:var(--text3);text-align:center;padding:2px 0;text-transform:uppercase}
-.cal-day{aspect-ratio:1;border-radius:6px;border:none;background:none;font-size:11px;color:var(--text2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;position:relative;cursor:pointer}
+.cal-day{aspect-ratio:1;border-radius:6px;border:none;background:none;font-size:11px;color:var(--text2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;cursor:pointer}
 .cal-day:hover{background:var(--bg2)}
 .cal-day.has-entry{color:var(--text);font-weight:500}
 .cal-day.has-entry::after{content:'';width:4px;height:4px;border-radius:50%;background:var(--accent);display:block}
 .cal-day.today{background:var(--bg3);color:var(--text);font-weight:500}
 .cal-day.selected{background:var(--accent);color:var(--accent-fg)!important;font-weight:500}
 .cal-day.selected::after{background:var(--accent-fg)}
-.cal-day.other-month{opacity:0.3}
-.cal-day:disabled{opacity:0.2;cursor:default}
-
-/* ── ENTRY LIST ── */
-.entry-month{font-size:10px;font-weight:500;color:var(--text3);padding:0.5rem 0.85rem 0.2rem;text-transform:uppercase;letter-spacing:0.05em}
-.entry-item{padding:0.5rem 0.85rem;cursor:pointer;border-left:2.5px solid transparent;transition:all 0.12s}
+.cal-day.other-month{opacity:.3}
+.cal-day:disabled{opacity:.2;cursor:default}
+.entry-month{font-size:10px;font-weight:500;color:var(--text3);padding:.5rem .85rem .2rem;text-transform:uppercase;letter-spacing:.05em}
+.entry-item{padding:.5rem .85rem;cursor:pointer;border-left:2.5px solid transparent}
 .entry-item:hover{background:var(--bg2)}
 .entry-item.active{background:var(--bg2);border-left-color:var(--text)}
 .entry-item-date{font-size:12px;font-weight:500;color:var(--text);display:flex;align-items:center;gap:5px}
 .mood-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
 .entry-item-preview{font-size:11px;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
 
-/* ── EDITOR ── */
+/* EDITOR */
 .editor-wrap{flex:1;overflow-y:auto;padding:1.25rem}
-.editor-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:0.75rem;color:var(--text3)}
-.editor-empty-icon{font-size:52px;opacity:0.25;font-family:'Playfair Display',serif}
+.editor-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:.75rem;color:var(--text3)}
+.editor-empty-icon{font-size:52px;opacity:.25;font-family:'Playfair Display',serif}
 .editor-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem;max-width:680px;margin:0 auto;box-shadow:var(--shadow)}
-.editor-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.1rem;gap:0.75rem;flex-wrap:wrap}
+.editor-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.1rem;gap:.75rem;flex-wrap:wrap}
 .editor-date{font-family:'Playfair Display',serif;font-size:1.35rem;border:none;background:transparent;color:var(--text);padding:0;min-width:160px}
-.editor-date::-webkit-calendar-picker-indicator{opacity:0.4;cursor:pointer;filter:var(--cal-icon-filter,none)}
-[data-theme="dark"] .editor-date::-webkit-calendar-picker-indicator{filter:invert(1)}
+[data-theme=dark] .editor-date::-webkit-calendar-picker-indicator{filter:invert(1)}
 .mood-row{display:flex;gap:5px}
 .mood-btn{background:none;border:1px solid var(--border);border-radius:18px;padding:3px 9px;font-size:13px}
-.mood-btn:hover,.mood-btn.on{background:var(--accent);border-color:var(--accent);color:var(--accent-fg);filter:none}
-.editor-title{width:100%;border:none;border-bottom:1px solid var(--border);padding:0.4rem 0;font-family:'Playfair Display',serif;font-size:1.05rem;background:transparent;color:var(--text);margin-bottom:0.9rem}
+.mood-btn:hover,.mood-btn.on{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}
+.editor-title{width:100%;border:none;border-bottom:1px solid var(--border);padding:.4rem 0;font-family:'Playfair Display',serif;font-size:1.05rem;background:transparent;color:var(--text);margin-bottom:.9rem}
 .editor-body{width:100%;min-height:200px;border:none;font-size:14px;line-height:1.85;background:transparent;color:var(--text);resize:vertical}
-.media-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:8px;margin-top:0.9rem}
+.media-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:8px;margin-top:.9rem}
 .media-thumb{position:relative;aspect-ratio:1;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:var(--bg2)}
 .media-thumb img,.media-thumb video{width:100%;height:100%;object-fit:cover}
-.rm-btn{position:absolute;top:3px;right:3px;background:rgba(0,0,0,0.55);color:#fff;border:none;border-radius:50%;width:19px;height:19px;font-size:11px;display:flex;align-items:center;justify-content:center;padding:0;line-height:1}
-.voice-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:0.55rem 0.85rem;display:flex;align-items:center;gap:10px;margin-top:0.6rem}
+.rm-btn{position:absolute;top:3px;right:3px;background:rgba(0,0,0,.55);color:#fff;border:none;border-radius:50%;width:19px;height:19px;font-size:11px;display:flex;align-items:center;justify-content:center;padding:0}
+.voice-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:.55rem .85rem;display:flex;align-items:center;gap:10px;margin-top:.6rem}
 .voice-item audio{flex:1;height:26px}
 .voice-rm{background:none;border:none;color:var(--danger);font-size:13px;padding:2px 5px}
-.toolbar{display:flex;gap:7px;margin-top:0.9rem;padding-top:0.9rem;border-top:1px solid var(--border);flex-wrap:wrap}
+.toolbar{display:flex;gap:7px;margin-top:.9rem;padding-top:.9rem;border-top:1px solid var(--border);flex-wrap:wrap}
 .tool-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:5px 11px;font-size:12px;color:var(--text2);display:flex;align-items:center;gap:5px}
 .tool-btn:hover{background:var(--bg2);color:var(--text);border-color:var(--border2)}
 .tool-btn.rec{background:var(--danger-bg);border-color:#f09595;color:var(--danger)}
-.save-row{display:flex;justify-content:flex-end;gap:7px;margin-top:0.9rem;padding-top:0.75rem;border-top:1px solid var(--border)}
-.btn-save{background:var(--accent);color:var(--accent-fg);border:none;border-radius:var(--radius);padding:0.58rem 1.2rem;font-size:13px;font-weight:500}
-.btn-save:hover{opacity:0.85}
-.btn-del{background:none;border:1px solid var(--border);border-radius:var(--radius);padding:0.58rem 0.9rem;font-size:13px;color:var(--danger)}
+.save-row{display:flex;justify-content:flex-end;gap:7px;margin-top:.9rem;padding-top:.75rem;border-top:1px solid var(--border)}
+.btn-save{background:var(--accent);color:var(--accent-fg);border:none;border-radius:var(--radius);padding:.58rem 1.2rem;font-size:13px;font-weight:500}
+.btn-save:hover{opacity:.85}
+.btn-del{background:none;border:1px solid var(--border);border-radius:var(--radius);padding:.58rem .9rem;font-size:13px;color:var(--danger)}
 .btn-del:hover{background:var(--danger-bg);border-color:#f09595}
 
-/* ── TOAST ── */
-.toast{position:fixed;bottom:1.25rem;right:1.25rem;background:var(--accent);color:var(--accent-fg);border-radius:10px;padding:0.6rem 1rem;font-size:13px;opacity:0;pointer-events:none;transition:opacity 0.3s;z-index:999;box-shadow:var(--shadow)}
+/* TOAST */
+.toast{position:fixed;bottom:1.25rem;right:1.25rem;background:var(--accent);color:var(--accent-fg);border-radius:10px;padding:.6rem 1rem;font-size:13px;opacity:0;pointer-events:none;transition:opacity .3s;z-index:999;box-shadow:var(--shadow)}
 .toast.show{opacity:1}
 
-/* ── REC BLINK ── */
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+/* SYNC INDICATOR */
+.sync-spin{display:inline-block;animation:spin .8s linear infinite;margin-right:4px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
 .rec-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--danger);animation:blink 1s infinite;vertical-align:middle;margin-right:4px}
 
-/* ── GDRIVE STATUS ── */
-.gdrive-status{font-size:11px;padding:0.4rem 0.7rem;border-radius:6px;display:flex;align-items:center;gap:5px}
-.gdrive-status.connected{background:var(--success-bg);color:var(--success)}
-.gdrive-status.disconnected{background:var(--bg2);color:var(--text3)}
-
-/* ── MOBILE ── */
-@media(max-width:620px){
-  .sidebar{width:200px;min-width:200px}
-  .editor-wrap{padding:0.85rem 0.65rem}
-}
+/* MOBILE */
 @media(max-width:480px){
-  .sidebar{position:fixed;left:-240px;top:55px;height:calc(100vh - 55px);z-index:40;transition:left 0.25s;box-shadow:var(--shadow)}
+  .sidebar{position:fixed;left:-260px;top:55px;height:calc(100vh - 55px);z-index:40;transition:left .25s;box-shadow:var(--shadow);width:240px}
   .sidebar.open{left:0}
-  .editor-wrap{padding:0.85rem}
+  .editor-wrap{padding:.85rem}
 }
 </style>
 </head>
-<body data-theme="system-light">
+<body>
 
 <!-- LOGIN -->
 <div id="loginScreen" class="screen active">
   <div class="login-wrap">
     <div class="theme-bar">
-      <button class="theme-pill active" data-t="light" onclick="setTheme('light',this)">☀ Light</button>
-      <button class="theme-pill" data-t="dark" onclick="setTheme('dark',this)">☽ Dark</button>
-      <button class="theme-pill" data-t="system" onclick="setTheme('system',this)">◑ System</button>
+      <button class="theme-pill" data-t="light" onclick="setTheme('light')">☀ Light</button>
+      <button class="theme-pill" data-t="dark" onclick="setTheme('dark')">☽ Dark</button>
+      <button class="theme-pill" data-t="system" onclick="setTheme('system')">◑ System</button>
     </div>
     <div class="login-box">
       <div class="logo">✦ Dear Diary</div>
@@ -174,13 +151,13 @@ input:focus,textarea:focus{border-color:var(--border2)}
       <button class="btn-primary" onclick="handleLogin()">Open my diary</button>
       <div class="login-err" id="loginErr"></div>
       <div class="login-toggle" onclick="toggleSignup()" id="signupToggle">Don't have an account? Create one</div>
-      <div class="divider">or connect storage</div>
-      <button class="gdrive-btn" onclick="connectGDrive()">
+      <div class="divider">or sign in with Google</div>
+      <button class="gdrive-btn" onclick="startGoogleAuth('login')">
         <svg viewBox="0 0 48 48"><path fill="#4285F4" d="M24 9.6L14.4 26.4H33.6z"/><path fill="#FBBC05" d="M9.6 38.4h28.8l-4.8-8H14.4z"/><path fill="#34A853" d="M14.4 26.4L9.6 38.4 0 22.8z"/><path fill="#EA4335" d="M33.6 26.4L48 22.8 38.4 9.6z"/><path fill="#4285F4" d="M24 9.6L38.4 9.6 48 22.8 33.6 26.4z"/><path fill="#34A853" d="M9.6 38.4L14.4 26.4 24 9.6 9.6 9.6z"/></svg>
-        Sign in with Google Drive
+        Continue with Google (+ Drive sync)
       </button>
-      <div style="font-size:11px;color:var(--text3);text-align:center;margin-top:0.75rem;line-height:1.6">
-        Google Drive stores your diary in <em>your</em> Google account — free, cross-device, and private.
+      <div style="font-size:11px;color:var(--text3);text-align:center;margin-top:.75rem;line-height:1.6">
+        Google sign-in syncs your diary across all devices for free.
       </div>
     </div>
   </div>
@@ -190,12 +167,12 @@ input:focus,textarea:focus{border-color:var(--border2)}
 <div id="appScreen" class="screen">
   <div class="topbar">
     <div style="display:flex;align-items:center;gap:8px">
-      <button class="icon-btn" id="sidebarToggle" onclick="toggleSidebar()" style="display:none" aria-label="Menu">☰</button>
+      <button class="icon-btn" id="sidebarToggle" onclick="toggleSidebar()" style="display:none">☰</button>
       <div class="topbar-logo">✦ Dear Diary</div>
     </div>
     <div class="topbar-right">
-      <div id="driveStatus" class="gdrive-status disconnected">⬤ Local</div>
-      <button class="icon-btn" onclick="cycleTheme()" id="themeToggleBtn" title="Toggle theme">☀</button>
+      <div id="syncStatus" style="font-size:11px;color:var(--text3)"></div>
+      <button class="icon-btn" onclick="cycleTheme()" id="themeBtn" title="Theme">☀</button>
       <button class="icon-btn" onclick="handleLogout()" title="Sign out">⇥</button>
     </div>
   </div>
@@ -207,6 +184,10 @@ input:focus,textarea:focus{border-color:var(--border2)}
           <button class="tab-btn active" id="tabCal" onclick="showTab('cal')">Calendar</button>
           <button class="tab-btn" id="tabList" onclick="showTab('list')">All entries</button>
         </div>
+      </div>
+      <!-- Drive link banner for password users -->
+      <div id="driveBanner" class="drive-banner" onclick="linkDrive()" style="display:none">
+        ☁ Link Google Drive for cross-device sync
       </div>
       <div class="sidebar-scroll" id="sidebarContent"></div>
     </div>
@@ -225,384 +206,409 @@ input:focus,textarea:focus{border-color:var(--border2)}
 <input type="file" id="videoIn" accept="video/*" multiple style="display:none" onchange="addMedia(event,'video')">
 
 <script>
-// ─── THEME ───
+// ── CONFIG ──────────────────────────────────────────────────
+const GDRIVE_CLIENT_ID = '950704118337-14ppm2ovunjr1fg0deutr64id3cesui3.apps.googleusercontent.com';
+const GDRIVE_SCOPE = 'https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email';
+const DRIVE_FILENAME = 'dear_diary_entries.json';
+
+// ── STATE ────────────────────────────────────────────────────
+let currentUser = null;       // string username
+let isGoogleUser = false;     // logged in via Google
+let entries = {};             // { id: entryObj }
+let gToken = null;            // Google OAuth access token
+let gFileId = null;           // Drive file id for entries
+let authPurpose = 'login';    // 'login' or 'link'
+let currentEntryId = null;
+let currentEntry = { media: [], voices: [] };
 let themeMode = localStorage.getItem('dd_theme') || 'light';
-function applyTheme(m){
-  const sys = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const dark = m==='dark'||(m==='system'&&sys);
-  document.body.setAttribute('data-theme', dark?'dark':'light');
-  const btn = document.getElementById('themeToggleBtn');
-  if(btn) btn.textContent = m==='dark'?'☽':m==='system'?'◑':'☀';
+
+// ── THEME ────────────────────────────────────────────────────
+function applyTheme(m) {
+  const dark = m === 'dark' || (m === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  document.body.setAttribute('data-theme', dark ? 'dark' : 'light');
+  const btn = document.getElementById('themeBtn');
+  if (btn) btn.textContent = m === 'dark' ? '☽' : m === 'system' ? '◑' : '☀';
+  document.querySelectorAll('.theme-pill').forEach(b => b.classList.toggle('active', b.dataset.t === m));
 }
-function setTheme(m,el){
-  themeMode=m; localStorage.setItem('dd_theme',m);
-  document.querySelectorAll('.theme-pill').forEach(b=>b.classList.toggle('active',b.dataset.t===m));
-  applyTheme(m);
-}
-function cycleTheme(){
-  const order=['light','dark','system'];
-  themeMode=order[(order.indexOf(themeMode)+1)%3];
-  localStorage.setItem('dd_theme',themeMode);
-  applyTheme(themeMode);
-  const btn=document.getElementById('themeToggleBtn');
-  btn.textContent=themeMode==='dark'?'☽':themeMode==='system'?'◑':'☀';
-}
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{if(themeMode==='system')applyTheme('system')});
+function setTheme(m) { themeMode = m; localStorage.setItem('dd_theme', m); applyTheme(m); }
+function cycleTheme() { setTheme(['light','dark','system'][(['light','dark','system'].indexOf(themeMode)+1)%3]); }
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { if(themeMode==='system') applyTheme('system'); });
 applyTheme(themeMode);
 
-// ─── STORAGE ───
-// Diary data stored in localStorage (keyed by username+password hash).
-// For Google Drive: files are stored as a JSON file "dear_diary_data.json" in Drive root.
-let currentUser = null;
-let entries = {}; // {id: entryObj}
-let gdriveToken = null;
-let gdriveFileId = null;
-const GDRIVE_CLIENT_ID = '950704118337-14ppm2ovunjr1fg0deutr64id3cesui3.apps.googleusercontent.com'; // User replaces this
-
-function hashStr(s){
-  let h=0; for(let i=0;i<s.length;i++){h=Math.imul(31,h)+s.charCodeAt(i)|0;} return (h>>>0).toString(36);
+// ── HELPERS ──────────────────────────────────────────────────
+function h(s) { let n=0; for(let i=0;i<s.length;i++) n=Math.imul(31,n)+s.charCodeAt(i)|0; return (n>>>0).toString(36); }
+function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function showToast(msg, dur=2600) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), dur);
 }
-function storageKey(user){ return 'dd_'+hashStr(user); }
+function setSyncStatus(msg, color) {
+  const el = document.getElementById('syncStatus');
+  if(el) { el.textContent = msg; el.style.color = color || 'var(--text3)'; }
+}
 
-// ─── AUTH ───
+// ── LOCAL STORAGE ────────────────────────────────────────────
+function localSave() {
+  if (!currentUser) return;
+  localStorage.setItem('dd_entries_' + h(currentUser), JSON.stringify(entries));
+}
+function localLoad() {
+  const raw = localStorage.getItem('dd_entries_' + h(currentUser));
+  return raw ? JSON.parse(raw) : {};
+}
+
+// ── AUTH: PASSWORD LOGIN ─────────────────────────────────────
 let isSignup = false;
-function toggleSignup(){
-  isSignup=!isSignup;
-  document.getElementById('signupToggle').textContent=isSignup?'Already have an account? Sign in':"Don't have an account? Create one";
-  document.getElementById('loginSubtitle').textContent=isSignup?'Create your journal':'Your private journal';
-  document.getElementById('loginErr').textContent='';
+function toggleSignup() {
+  isSignup = !isSignup;
+  document.getElementById('signupToggle').textContent = isSignup ? 'Already have an account? Sign in' : "Don't have an account? Create one";
+  document.getElementById('loginSubtitle').textContent = isSignup ? 'Create your journal' : 'Your private journal';
+  document.getElementById('loginErr').textContent = '';
 }
 
-async function handleLogin(){
-  const user=document.getElementById('loginUser').value.trim();
-  const pass=document.getElementById('loginPass').value.trim();
-  const err=document.getElementById('loginErr');
-  if(!user||!pass){err.textContent='Please enter both fields.';return;}
-
-  const key=storageKey(user+'::'+pass);
-  const usersRaw=localStorage.getItem('dd_users');
-  const users=usersRaw?JSON.parse(usersRaw):{};
-
-  if(isSignup){
-    const ukey=storageKey(user);
-    if(users[ukey]){err.textContent='Username already taken.';return;}
-    users[ukey]={hash:hashStr(pass)};
-    localStorage.setItem('dd_users',JSON.stringify(users));
-    localStorage.setItem(key,JSON.stringify({}));
+function handleLogin() {
+  const user = document.getElementById('loginUser').value.trim();
+  const pass = document.getElementById('loginPass').value.trim();
+  const err = document.getElementById('loginErr');
+  if (!user || !pass) { err.textContent = 'Please enter both fields.'; return; }
+  const users = JSON.parse(localStorage.getItem('dd_users') || '{}');
+  const uk = 'u_' + h(user);
+  if (isSignup) {
+    if (users[uk]) { err.textContent = 'Username already taken.'; return; }
+    users[uk] = { hash: h(user + '::' + pass) };
+    localStorage.setItem('dd_users', JSON.stringify(users));
     showToast('Account created! Welcome.');
   } else {
-    const ukey=storageKey(user);
-    if(!users[ukey]||users[ukey].hash!==hashStr(pass)){
-      err.textContent='Wrong username or password.';return;
+    if (!users[uk] || users[uk].hash !== h(user + '::' + pass)) {
+      err.textContent = 'Wrong username or password.'; return;
     }
   }
-  currentUser=user;
-  const raw=localStorage.getItem(key);
-  entries=raw?JSON.parse(raw):{};
-  document.getElementById('loginErr').textContent='';
-  document.getElementById('loginUser').value='';
-  document.getElementById('loginPass').value='';
-  openApp();
+  currentUser = user;
+  isGoogleUser = false;
+  entries = localLoad();
+  err.textContent = '';
+  document.getElementById('loginUser').value = '';
+  document.getElementById('loginPass').value = '';
+  // Check if this user already linked Drive
+  const linked = localStorage.getItem('dd_drive_linked_' + h(user));
+  if (linked) {
+    // Re-auth silently to restore Drive
+    startGoogleAuth('link_silent');
+  } else {
+    openApp();
+  }
 }
 
-function handleLogout(){
-  currentUser=null; entries={}; gdriveToken=null; gdriveFileId=null;
-  currentEntryId=null; currentEntry={};
+function handleLogout() {
+  currentUser = null; isGoogleUser = false; entries = {};
+  gToken = null; gFileId = null;
+  currentEntryId = null; currentEntry = { media: [], voices: [] };
   document.getElementById('appScreen').classList.remove('active');
   document.getElementById('loginScreen').classList.add('active');
-  document.getElementById('driveStatus').className='gdrive-status disconnected';
-  document.getElementById('driveStatus').textContent='⬤ Local';
-  showEditor(false);
+  resetEditor();
 }
 
-function openApp(){
+// ── AUTH: GOOGLE ─────────────────────────────────────────────
+function startGoogleAuth(purpose) {
+  authPurpose = purpose;
+  // Save current state so we can restore after redirect
+  if (purpose === 'link' || purpose === 'link_silent') {
+    sessionStorage.setItem('dd_pre_auth_user', currentUser || '');
+    sessionStorage.setItem('dd_pre_auth_purpose', purpose);
+  }
+  const params = new URLSearchParams({
+    client_id: GDRIVE_CLIENT_ID,
+    redirect_uri: location.origin + location.pathname,
+    response_type: 'token',
+    scope: GDRIVE_SCOPE,
+    prompt: purpose === 'link_silent' ? 'none' : 'select_account'
+  });
+  window.location = 'https://accounts.google.com/o/oauth2/v2/auth?' + params;
+}
+
+function linkDrive() {
+  // Password user wants to link Drive for sync
+  startGoogleAuth('link');
+}
+
+async function handleGoogleCallback() {
+  const hash = location.hash;
+  if (!hash.includes('access_token=')) return;
+  const p = new URLSearchParams(hash.slice(1));
+  gToken = p.get('access_token');
+  history.replaceState(null, '', location.pathname);
+
+  // Get Google profile
+  let profile;
+  try {
+    const r = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', { headers: { Authorization: 'Bearer ' + gToken } });
+    profile = await r.json();
+  } catch(e) {
+    showToast('Google auth failed. Try again.'); return;
+  }
+
+  const googleEmail = profile.email || 'google_user';
+  const googleName = profile.name || googleEmail;
+  const purpose = sessionStorage.getItem('dd_pre_auth_purpose') || authPurpose;
+  const preUser = sessionStorage.getItem('dd_pre_auth_user') || '';
+  sessionStorage.removeItem('dd_pre_auth_purpose');
+  sessionStorage.removeItem('dd_pre_auth_user');
+
+  if (purpose === 'link' || purpose === 'link_silent') {
+    // Linking Drive to an existing password account
+    currentUser = preUser;
+    isGoogleUser = false;
+    entries = localLoad();
+    localStorage.setItem('dd_drive_linked_' + h(currentUser), googleEmail);
+    openApp();
+    showToast('Google Drive linked ✓ syncing…');
+    await setupDriveFile(googleEmail);
+    await syncToDrive(); // push local entries to Drive
+    await loadFromDrive(); // then pull (merge)
+  } else {
+    // Pure Google login
+    currentUser = 'g:' + googleEmail;
+    isGoogleUser = true;
+    // Register google user locally if first time
+    const users = JSON.parse(localStorage.getItem('dd_users') || '{}');
+    const uk = 'u_' + h(currentUser);
+    if (!users[uk]) { users[uk] = { googleEmail }; localStorage.setItem('dd_users', JSON.stringify(users)); }
+    entries = localLoad(); // load any cached entries
+    openApp();
+    showToast('Signed in as ' + googleName);
+    await setupDriveFile(googleEmail);
+    await loadFromDrive();
+  }
+}
+
+// ── DRIVE OPERATIONS ─────────────────────────────────────────
+async function setupDriveFile(emailHint) {
+  // Find or remember the Drive file ID
+  // Use drive.file scope: search for our file by name
+  try {
+    const res = await fetch(
+      `https://www.googleapis.com/drive/v3/files?q=name%3D'${DRIVE_FILENAME}'%20and%20trashed%3Dfalse&fields=files(id,name)`,
+      { headers: { Authorization: 'Bearer ' + gToken } }
+    );
+    const data = await res.json();
+    if (data.error) { console.error('Drive search error', data.error); return; }
+    const files = data.files || [];
+    if (files.length > 0) {
+      gFileId = files[0].id;
+    }
+    // gFileId stays null if no file yet — syncToDrive will create it
+  } catch(e) { console.error('Drive setup error', e); }
+}
+
+async function loadFromDrive() {
+  if (!gToken) return;
+  setSyncStatus('↓ Loading…', 'var(--text3)');
+  try {
+    if (!gFileId) {
+      await setupDriveFile();
+      if (!gFileId) { setSyncStatus('☁ Drive (empty)', 'var(--success)'); return; }
+    }
+    const res = await fetch(
+      'https://www.googleapis.com/drive/v3/files/' + gFileId + '?alt=media',
+      { headers: { Authorization: 'Bearer ' + gToken } }
+    );
+    if (!res.ok) { setSyncStatus('⚠ Drive load failed', 'var(--danger)'); return; }
+    const driveEntries = await res.json();
+    // Merge: keep newer entry by updated timestamp
+    let merged = { ...entries };
+    for (const [id, e] of Object.entries(driveEntries)) {
+      if (!merged[id] || new Date(e.updated) > new Date(merged[id].updated || 0)) {
+        merged[id] = e;
+      }
+    }
+    entries = merged;
+    localSave();
+    refreshSidebar();
+    setSyncStatus('☁ Synced', 'var(--success)');
+    showToast('Diary loaded from Drive ✓');
+  } catch(e) {
+    setSyncStatus('⚠ Sync error', 'var(--danger)');
+    console.error('Drive load error', e);
+  }
+}
+
+async function syncToDrive() {
+  if (!gToken) return;
+  setSyncStatus('↑ Saving…', 'var(--text3)');
+  const body = JSON.stringify(entries);
+  try {
+    if (gFileId) {
+      // Update existing file
+      const res = await fetch(
+        'https://www.googleapis.com/upload/drive/v3/files/' + gFileId + '?uploadType=media',
+        { method: 'PATCH', headers: { Authorization: 'Bearer ' + gToken, 'Content-Type': 'application/json' }, body }
+      );
+      if (!res.ok) { const e = await res.json(); throw new Error(JSON.stringify(e)); }
+    } else {
+      // Create new file
+      const meta = { name: DRIVE_FILENAME, mimeType: 'application/json' };
+      const form = new FormData();
+      form.append('metadata', new Blob([JSON.stringify(meta)], { type: 'application/json' }));
+      form.append('file', new Blob([body], { type: 'application/json' }));
+      const res = await fetch(
+        'https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id',
+        { method: 'POST', headers: { Authorization: 'Bearer ' + gToken }, body: form }
+      );
+      if (!res.ok) { const e = await res.json(); throw new Error(JSON.stringify(e)); }
+      const d = await res.json();
+      gFileId = d.id;
+    }
+    setSyncStatus('☁ Synced', 'var(--success)');
+  } catch(e) {
+    setSyncStatus('⚠ Sync failed', 'var(--danger)');
+    console.error('Drive sync error', e);
+    showToast('Drive sync failed — saved locally');
+  }
+}
+
+// ── APP OPEN ─────────────────────────────────────────────────
+function openApp() {
   document.getElementById('loginScreen').classList.remove('active');
   document.getElementById('appScreen').classList.add('active');
-  if(window.innerWidth<=480) document.getElementById('sidebarToggle').style.display='flex';
+  if (window.innerWidth <= 480) document.getElementById('sidebarToggle').style.display = 'flex';
+  // Show Drive banner for password users without Drive linked
+  const banner = document.getElementById('driveBanner');
+  if (!isGoogleUser && !gToken) {
+    banner.style.display = 'flex';
+    banner.className = 'drive-banner';
+    banner.innerHTML = '☁ Link Google Drive for cross-device sync';
+  } else if (gToken) {
+    banner.style.display = 'flex';
+    banner.className = 'drive-banner ok';
+    banner.innerHTML = '✓ Google Drive connected';
+    banner.onclick = null;
+  } else {
+    banner.style.display = 'none';
+  }
   showTab('cal');
 }
 
-function saveAll(){
-  if(!currentUser)return;
-  const key=storageKey(currentUser+'::_');
-  // We stored with hash of user+pass, reconstruct: store under user hash only too
-  // Store under a stable key: user-hash only (after login we know it matches)
-  const ukey='dd_data_'+hashStr(currentUser);
-  // Actually we use the full key set at login — so let's also mirror to ukey for convenience
-  localStorage.setItem(ukey, JSON.stringify(entries));
-  // Also try Drive
-  if(gdriveToken) syncToDrive();
+// ── CALENDAR & LIST ──────────────────────────────────────────
+const moods = { happy:'😊', sad:'😢', meh:'😐', angry:'😤', calm:'😌' };
+const moodColors = { happy:'#639922', sad:'#185fa5', meh:'#ba7517', angry:'#a32d2d', calm:'#0f6e56' };
+let calYear = new Date().getFullYear(), calMonth = new Date().getMonth();
+
+function showTab(tab) {
+  document.getElementById('tabCal').className = 'tab-btn' + (tab==='cal' ? ' active' : '');
+  document.getElementById('tabList').className = 'tab-btn' + (tab==='list' ? ' active' : '');
+  tab === 'cal' ? renderCalendar() : renderList();
+}
+function refreshSidebar() {
+  document.getElementById('tabCal').classList.contains('active') ? renderCalendar() : renderList();
 }
 
-function getUserDataKey(){
-  return 'dd_data_'+hashStr(currentUser);
-}
-
-// On login: load from user-specific key
-async function handleLoginFixed(){/* see handleLogin above */}
-
-// ─── GOOGLE DRIVE ───
-function connectGDrive(){
-  // Check if client ID configured
-  if(GDRIVE_CLIENT_ID==='DISABLED_CHECK'){
-    alert('To use Google Drive sync:\n\n1. Go to console.cloud.google.com\n2. Create a project → Enable Google Drive API\n3. Create OAuth 2.0 Client ID (Web App)\n4. Add your file URL to Authorised Origins\n5. Replace 950704118337-14ppm2ovunjr1fg0deutr64id3cesui3.apps.googleusercontent.com in this file\n\nSee the README section at the bottom of this file for details.');
-    return;
-  }
-  const params=new URLSearchParams({client_id:GDRIVE_CLIENT_ID,redirect_uri:location.origin+location.pathname,response_type:'token',scope:'https://www.googleapis.com/auth/drive.appdata https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',prompt:'select_account'});
-  window.location='https://accounts.google.com/o/oauth2/v2/auth?'+params;
-}
-
-async function checkGDriveCallback(){
-  const hash=location.hash;
-  if(!hash.includes('access_token='))return;
-  const p=new URLSearchParams(hash.slice(1));
-  gdriveToken=p.get('access_token');
-  history.replaceState(null,'',location.pathname);
-
-  // Get user's Google profile to use as their identity
-  try{
-    const res=await fetch('https://www.googleapis.com/oauth2/v3/userinfo',{headers:{Authorization:'Bearer '+gdriveToken}});
-    const profile=await res.json();
-    const googleEmail=profile.email||'google_user';
-    const googleName=profile.name||googleEmail;
-
-    // Auto-register/login this Google user
-    currentUser='google:'+googleEmail;
-    const usersRaw=localStorage.getItem('dd_users');
-    const users=usersRaw?JSON.parse(usersRaw):{};
-    const ukey='dd_u_'+hashStr(currentUser);
-    if(!users[ukey]){
-      users[ukey]={hash:hashStr('gdrive_auth'), googleEmail};
-      localStorage.setItem('dd_users',JSON.stringify(users));
-    }
-
-    // Load any locally cached entries
-    const raw=localStorage.getItem('dd_data_'+hashStr(currentUser));
-    entries=raw?JSON.parse(raw):{};
-
-    // Open the app
-    openApp();
-    document.getElementById('driveStatus').className='gdrive-status connected';
-    document.getElementById('driveStatus').textContent='⬤ Drive ('+googleName.split(' ')[0]+')';
-    showToast('Signed in as '+googleName+' ✓');
-
-    // Now load from Drive (may override local entries)
-    loadFromDrive();
-  }catch(e){
-    showToast('Google sign-in failed: '+e.message);
-  }
-}
-
-async function loadFromDrive(){
-  if(!gdriveToken)return;
-  try{
-    const res=await fetch('https://www.googleapis.com/drive/v3/files?spaces=appDataFolder&fields=files(id,name)',{headers:{Authorization:'Bearer '+gdriveToken}});
-    const data=await res.json();
-    const file=(data.files||[]).find(f=>f.name==='dear_diary_'+hashStr(currentUser||'guest')+'.json');
-    if(file){
-      gdriveFileId=file.id;
-      const dr=await fetch('https://www.googleapis.com/drive/v3/files/'+file.id+'?alt=media',{headers:{Authorization:'Bearer '+gdriveToken}});
-      const d=await dr.json();
-      entries=d||{};
-      refreshSidebar();
-      showToast('Diary loaded from Drive ✓');
-    }
-  }catch(e){showToast('Drive load failed: '+e.message);}
-}
-
-async function syncToDrive(){
-  if(!gdriveToken||!currentUser)return;
-  const fname='dear_diary_'+hashStr(currentUser)+'.json';
-  const body=JSON.stringify(entries);
-  try{
-    if(gdriveFileId){
-      await fetch('https://www.googleapis.com/upload/drive/v3/files/'+gdriveFileId+'?uploadType=media',{method:'PATCH',headers:{Authorization:'Bearer '+gdriveToken,'Content-Type':'application/json'},body});
-    } else {
-      const meta={name:fname,parents:['appDataFolder']};
-      const form=new FormData();
-      form.append('metadata',new Blob([JSON.stringify(meta)],{type:'application/json'}));
-      form.append('file',new Blob([body],{type:'application/json'}));
-      const res=await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart',{method:'POST',headers:{Authorization:'Bearer '+gdriveToken},body:form});
-      const d=await res.json();
-      gdriveFileId=d.id;
-    }
-  }catch(e){console.error('Drive sync failed',e);}
-}
-
-// ─── ENTRY STATE ───
-let currentEntryId=null;
-let currentEntry={media:[],voices:[]};
-const moods={happy:'😊',sad:'😢',meh:'😐',angry:'😤',calm:'😌'};
-const moodColors={happy:'#639922',sad:'#185fa5',meh:'#ba7517',angry:'#a32d2d',calm:'#0f6e56'};
-
-// ─── CALENDAR ───
-let calYear=new Date().getFullYear();
-let calMonth=new Date().getMonth();
-
-function showTab(tab){
-  document.getElementById('tabCal').className='tab-btn'+(tab==='cal'?' active':'');
-  document.getElementById('tabList').className='tab-btn'+(tab==='list'?' active':'');
-  if(tab==='cal') renderCalendar();
-  else renderList();
-}
-
-function entryDates(){
-  const dates=new Set();
-  Object.values(entries).forEach(e=>dates.add(e.date));
-  return dates;
-}
-
-function renderCalendar(){
-  const sc=document.getElementById('sidebarContent');
-  const dates=entryDates();
-  const monthNames=['January','February','March','April','May','June','July','August','September','October','November','December'];
-  const dows=['Su','Mo','Tu','We','Th','Fr','Sa'];
-  const today=new Date(); const td=today.toISOString().split('T')[0];
-
-  const first=new Date(calYear,calMonth,1);
-  const startDow=first.getDay();
-  const daysIn=new Date(calYear,calMonth+1,0).getDate();
-  const prevDays=new Date(calYear,calMonth,0).getDate();
-
-  let html=`<div class="cal-wrap"><div class="cal-header">
+function renderCalendar() {
+  const sc = document.getElementById('sidebarContent');
+  const dates = new Set(Object.values(entries).map(e => e.date));
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const td = new Date().toISOString().split('T')[0];
+  const first = new Date(calYear, calMonth, 1);
+  const startDow = first.getDay();
+  const daysIn = new Date(calYear, calMonth+1, 0).getDate();
+  const prevDays = new Date(calYear, calMonth, 0).getDate();
+  let html = `<div class="cal-wrap"><div class="cal-header">
     <button class="cal-nav" onclick="calNav(-1)">‹</button>
-    <div class="cal-title">${monthNames[calMonth]} ${calYear}</div>
+    <div class="cal-title">${months[calMonth]} ${calYear}</div>
     <button class="cal-nav" onclick="calNav(1)">›</button>
   </div><div class="cal-grid">`;
-  dows.forEach(d=>{html+=`<div class="cal-dow">${d}</div>`;});
-
-  // prev month filler
-  for(let i=startDow-1;i>=0;i--){
-    const d=prevDays-i;
-    html+=`<button class="cal-day other-month" disabled>${d}</button>`;
+  ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(d => html += `<div class="cal-dow">${d}</div>`);
+  for (let i = startDow-1; i >= 0; i--) html += `<button class="cal-day other-month" disabled>${prevDays-i}</button>`;
+  for (let d = 1; d <= daysIn; d++) {
+    const ds = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    let cls = 'cal-day' + (dates.has(ds) ? ' has-entry' : '') + (ds===td ? ' today' : '');
+    const selEntry = currentEntryId && entries[currentEntryId];
+    if (selEntry && selEntry.date === ds) cls += ' selected';
+    html += `<button class="${cls}" onclick="calDayClick('${ds}')">${d}</button>`;
   }
-  // current month
-  for(let d=1;d<=daysIn;d++){
-    const ds=`${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-    const has=dates.has(ds);
-    const isToday=ds===td;
-    let cls='cal-day';
-    if(has)cls+=' has-entry';
-    if(isToday)cls+=' today';
-    html+=`<button class="${cls}" onclick="calDayClick('${ds}')">${d}</button>`;
-  }
-  // next month filler
-  const total=startDow+daysIn;
-  const remaining=total%7===0?0:7-(total%7);
-  for(let d=1;d<=remaining;d++){
-    html+=`<button class="cal-day other-month" disabled>${d}</button>`;
-  }
-  html+=`</div></div>`;
-  // Also show entries for this month below
-  const monthEntries=Object.values(entries).filter(e=>e.date.startsWith(`${calYear}-${String(calMonth+1).padStart(2,'0')}`)).sort((a,b)=>b.date.localeCompare(a.date));
-  if(monthEntries.length){
-    html+=`<div class="entry-month">${monthNames[calMonth]} entries</div>`;
-    monthEntries.forEach(e=>{
-      const d=new Date(e.date+'T12:00:00');
-      const dc=moodColors[e.mood]||'var(--text3)';
-      html+=`<div class="entry-item${e.id===currentEntryId?' active':''}" onclick="openEntry('${e.id}')">
-        <div class="entry-item-date"><span class="mood-dot" style="background:${dc}"></span>${d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'})}</div>
-        <div class="entry-item-preview">${(e.title||e.body||'No content').substring(0,38)}</div>
+  const rem = (startDow+daysIn)%7; for (let d=1; d<=(rem?7-rem:0); d++) html += `<button class="cal-day other-month" disabled>${d}</button>`;
+  html += `</div></div>`;
+  const mEntries = Object.values(entries).filter(e => e.date.startsWith(`${calYear}-${String(calMonth+1).padStart(2,'0')}`)).sort((a,b)=>b.date.localeCompare(a.date));
+  if (mEntries.length) {
+    html += `<div class="entry-month">${months[calMonth]}</div>`;
+    mEntries.forEach(e => {
+      const d = new Date(e.date+'T12:00:00');
+      html += `<div class="entry-item${e.id===currentEntryId?' active':''}" onclick="openEntry('${e.id}')">
+        <div class="entry-item-date"><span class="mood-dot" style="background:${moodColors[e.mood]||'var(--text3)'}"></span>${d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'})}</div>
+        <div class="entry-item-preview">${escHtml((e.title||e.body||'No content').substring(0,38))}</div>
       </div>`;
     });
   }
-  sc.innerHTML=html;
-  // highlight selected
-  if(currentEntryId&&entries[currentEntryId]){
-    const ds=entries[currentEntryId].date;
-    sc.querySelectorAll('.cal-day').forEach(btn=>{
-      if(btn.onclick&&btn.onclick.toString().includes(ds)) btn.classList.add('selected');
-    });
-  }
+  sc.innerHTML = html;
 }
 
-function calNav(dir){
-  calMonth+=dir;
-  if(calMonth<0){calMonth=11;calYear--;}
-  if(calMonth>11){calMonth=0;calYear++;}
+function calNav(dir) { calMonth += dir; if(calMonth<0){calMonth=11;calYear--;}if(calMonth>11){calMonth=0;calYear++;} renderCalendar(); }
+
+function calDayClick(ds) {
+  const ex = Object.values(entries).find(e => e.date === ds);
+  if (ex) openEntry(ex.id);
+  else { currentEntryId='new_'+Date.now(); currentEntry={id:currentEntryId,date:ds,title:'',body:'',mood:'',media:[],voices:[]}; renderEditorUI(currentEntry); }
   renderCalendar();
+  if (window.innerWidth <= 480) document.getElementById('sidebar').classList.remove('open');
 }
 
-function calDayClick(ds){
-  // Find entry for this date or open new entry for it
-  const existing=Object.values(entries).find(e=>e.date===ds);
-  if(existing){ openEntry(existing.id); }
-  else {
-    currentEntryId='new_'+Date.now();
-    currentEntry={id:currentEntryId,date:ds,title:'',body:'',mood:'',media:[],voices:[]};
-    renderEditorUI(currentEntry);
-  }
-  // Update selected state
-  renderCalendar();
-}
-
-function renderList(){
-  const sc=document.getElementById('sidebarContent');
-  const all=Object.values(entries).sort((a,b)=>b.date.localeCompare(a.date));
-  if(!all.length){sc.innerHTML='<div style="padding:0.75rem 0.85rem;font-size:12px;color:var(--text3)">No entries yet.</div>';return;}
-  let html='',lastM='';
-  all.forEach(e=>{
-    const d=new Date(e.date+'T12:00:00');
-    const m=d.toLocaleDateString('en-US',{month:'long',year:'numeric'});
-    if(m!==lastM){html+=`<div class="entry-month">${m}</div>`;lastM=m;}
-    const dc=moodColors[e.mood]||'var(--text3)';
-    html+=`<div class="entry-item${e.id===currentEntryId?' active':''}" onclick="openEntry('${e.id}')">
-      <div class="entry-item-date"><span class="mood-dot" style="background:${dc}"></span>${d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'})}</div>
-      <div class="entry-item-preview">${(e.title||e.body||'No content').substring(0,38)}</div>
+function renderList() {
+  const sc = document.getElementById('sidebarContent');
+  const all = Object.values(entries).sort((a,b) => b.date.localeCompare(a.date));
+  if (!all.length) { sc.innerHTML='<div style="padding:.75rem .85rem;font-size:12px;color:var(--text3)">No entries yet.</div>'; return; }
+  let html='', lastM='';
+  all.forEach(e => {
+    const d = new Date(e.date+'T12:00:00');
+    const m = d.toLocaleDateString('en-US',{month:'long',year:'numeric'});
+    if (m !== lastM) { html += `<div class="entry-month">${m}</div>`; lastM=m; }
+    html += `<div class="entry-item${e.id===currentEntryId?' active':''}" onclick="openEntry('${e.id}')">
+      <div class="entry-item-date"><span class="mood-dot" style="background:${moodColors[e.mood]||'var(--text3)'}"></span>${d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'})}</div>
+      <div class="entry-item-preview">${escHtml((e.title||e.body||'No content').substring(0,38))}</div>
     </div>`;
   });
-  sc.innerHTML=html;
+  sc.innerHTML = html;
 }
 
-function refreshSidebar(){
-  const active=document.getElementById('tabCal').classList.contains('active');
-  if(active) renderCalendar(); else renderList();
-}
-
-// ─── ENTRIES ───
-function newEntry(){
-  const today=new Date().toISOString().split('T')[0];
-  currentEntryId='new_'+Date.now();
-  currentEntry={id:currentEntryId,date:today,title:'',body:'',mood:'',media:[],voices:[]};
+// ── EDITOR ───────────────────────────────────────────────────
+function newEntry() {
+  currentEntryId = 'new_'+Date.now();
+  currentEntry = {id:currentEntryId,date:new Date().toISOString().split('T')[0],title:'',body:'',mood:'',media:[],voices:[]};
   renderEditorUI(currentEntry);
   if(window.innerWidth<=480) document.getElementById('sidebar').classList.remove('open');
 }
-
-function openEntry(id){
-  if(!entries[id])return;
-  currentEntryId=id;
-  currentEntry=JSON.parse(JSON.stringify(entries[id]));
-  renderEditorUI(currentEntry);
-  refreshSidebar();
+function openEntry(id) {
+  if (!entries[id]) return;
+  currentEntryId = id; currentEntry = JSON.parse(JSON.stringify(entries[id]));
+  renderEditorUI(currentEntry); refreshSidebar();
   if(window.innerWidth<=480) document.getElementById('sidebar').classList.remove('open');
 }
+function resetEditor() {
+  document.getElementById('editorWrap').innerHTML = `<div class="editor-empty"><div class="editor-empty-icon">✦</div><div style="font-size:15px;font-weight:500">Pick a day or start writing</div><div style="font-size:13px">Your thoughts, always with you</div></div>`;
+}
 
-function renderEditorUI(e){
-  const ew=document.getElementById('editorWrap');
-  const moodHtml=Object.entries(moods).map(([k,v])=>`<button class="mood-btn${e.mood===k?' on':''}" onclick="setMood('${k}')" title="${k}">${v}</button>`).join('');
-
-  let mediaHtml='';
-  if(e.media&&e.media.length){
-    mediaHtml='<div class="media-grid">';
-    e.media.forEach((m,i)=>{
-      if(m.type==='image') mediaHtml+=`<div class="media-thumb"><img src="${m.data}" loading="lazy"><button class="rm-btn" onclick="removeMedia(${i})">✕</button></div>`;
-      else mediaHtml+=`<div class="media-thumb"><video src="${m.data}" controls></video><button class="rm-btn" onclick="removeMedia(${i})">✕</button></div>`;
+function renderEditorUI(e) {
+  const ew = document.getElementById('editorWrap');
+  const moodHtml = Object.entries(moods).map(([k,v]) => `<button class="mood-btn${e.mood===k?' on':''}" onclick="setMood('${k}')" title="${k}">${v}</button>`).join('');
+  let mediaHtml = '';
+  if (e.media && e.media.length) {
+    mediaHtml = '<div class="media-grid">';
+    e.media.forEach((m,i) => {
+      mediaHtml += m.type==='image'
+        ? `<div class="media-thumb"><img src="${m.data}" loading="lazy"><button class="rm-btn" onclick="removeMedia(${i})">✕</button></div>`
+        : `<div class="media-thumb"><video src="${m.data}" controls></video><button class="rm-btn" onclick="removeMedia(${i})">✕</button></div>`;
     });
-    mediaHtml+='</div>';
+    mediaHtml += '</div>';
   }
-
-  let voiceHtml='';
-  if(e.voices&&e.voices.length){
-    e.voices.forEach((v,i)=>{
-      voiceHtml+=`<div class="voice-item"><audio controls src="${v}"></audio><button class="voice-rm" onclick="removeVoice(${i})">✕</button></div>`;
-    });
+  let voiceHtml = '';
+  if (e.voices && e.voices.length) {
+    e.voices.forEach((v,i) => { voiceHtml += `<div class="voice-item"><audio controls src="${v}"></audio><button class="voice-rm" onclick="removeVoice(${i})">✕</button></div>`; });
   }
-
-  const isNew=!entries[e.id];
-  ew.innerHTML=`<div class="editor-card">
+  const isNew = !entries[e.id];
+  ew.innerHTML = `<div class="editor-card">
     <div class="editor-top">
-      <input type="date" class="editor-date" id="eDate" value="${e.date}" aria-label="Entry date">
-      <div class="mood-row" id="moodRow">${moodHtml}</div>
+      <input type="date" class="editor-date" id="eDate" value="${e.date}">
+      <div class="mood-row">${moodHtml}</div>
     </div>
     <input type="text" class="editor-title" id="eTitle" placeholder="Give this day a title…" value="${escHtml(e.title||'')}">
     <textarea class="editor-body" id="eBody" placeholder="What happened today? Write freely…">${escHtml(e.body||'')}</textarea>
@@ -613,207 +619,92 @@ function renderEditorUI(e){
       <button class="tool-btn" id="recBtn" onclick="toggleRec()">🎙 Voice note</button>
     </div>
     <div class="save-row">
-      ${!isNew?`<button class="btn-del" onclick="deleteEntry()">Delete</button>`:''}
-      <button class="btn-save" onclick="saveEntry()">Save entry</button>
+      ${!isNew ? `<button class="btn-del" onclick="deleteEntry()">Delete</button>` : ''}
+      <button class="btn-save" onclick="saveEntry()">💾 Save entry</button>
     </div>
   </div>`;
 }
 
-function escHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-
-function setMood(m){
-  currentEntry.mood=m;
-  document.querySelectorAll('.mood-btn').forEach((b,i)=>{
-    b.classList.toggle('on',Object.keys(moods)[i]===m);
-  });
+function setMood(m) {
+  currentEntry.mood = m;
+  document.querySelectorAll('.mood-btn').forEach((b,i) => b.classList.toggle('on', Object.keys(moods)[i]===m));
 }
-
-function removeMedia(i){currentEntry.media.splice(i,1);renderEditorUI(currentEntry);}
-function removeVoice(i){currentEntry.voices.splice(i,1);renderEditorUI(currentEntry);}
-
-function addMedia(ev,type){
-  Array.from(ev.target.files).forEach(f=>{
-    if(type==='video'&&f.size>50*1024*1024){showToast('Video too large (max 50MB)');return;}
-    const r=new FileReader();
-    r.onload=e=>{currentEntry.media.push({type,data:e.target.result});renderEditorUI(currentEntry);};
+function removeMedia(i) { currentEntry.media.splice(i,1); renderEditorUI(currentEntry); }
+function removeVoice(i) { currentEntry.voices.splice(i,1); renderEditorUI(currentEntry); }
+function addMedia(ev, type) {
+  Array.from(ev.target.files).forEach(f => {
+    if (type==='video' && f.size>50*1024*1024) { showToast('Video too large (max 50MB)'); return; }
+    const r = new FileReader();
+    r.onload = e => { currentEntry.media.push({type, data:e.target.result}); renderEditorUI(currentEntry); };
     r.readAsDataURL(f);
   });
-  ev.target.value='';
+  ev.target.value = '';
 }
 
-// ─── VOICE RECORDING ───
+// ── VOICE ────────────────────────────────────────────────────
 let mediaRec=null, recChunks=[], isRec=false;
-
-async function toggleRec(){
-  if(!isRec){
-    if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){
-      showToast('Microphone not supported in this browser.');return;
-    }
-    try{
-      const stream=await navigator.mediaDevices.getUserMedia({audio:true});
-      recChunks=[];
-      mediaRec=new MediaRecorder(stream);
-      mediaRec.ondataavailable=e=>recChunks.push(e.data);
-      mediaRec.onstop=()=>{
-        const blob=new Blob(recChunks,{type:'audio/webm'});
-        const r=new FileReader();
-        r.onload=e=>{currentEntry.voices.push(e.target.result);renderEditorUI(currentEntry);};
+async function toggleRec() {
+  if (!isRec) {
+    if (!navigator.mediaDevices?.getUserMedia) { showToast('Microphone not available in this browser.'); return; }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({audio:true});
+      recChunks = []; mediaRec = new MediaRecorder(stream);
+      mediaRec.ondataavailable = e => recChunks.push(e.data);
+      mediaRec.onstop = () => {
+        const blob = new Blob(recChunks, {type:'audio/webm'});
+        const r = new FileReader();
+        r.onload = e => { currentEntry.voices.push(e.target.result); renderEditorUI(currentEntry); };
         r.readAsDataURL(blob);
-        stream.getTracks().forEach(t=>t.stop());
+        stream.getTracks().forEach(t => t.stop());
       };
-      mediaRec.start();
-      isRec=true;
-      const btn=document.getElementById('recBtn');
-      if(btn){btn.className='tool-btn rec';btn.innerHTML='<span class="rec-dot"></span> Stop recording';}
-    }catch(err){
-      showToast('Microphone access denied. Please allow mic access in your browser settings.');
-    }
+      mediaRec.start(); isRec = true;
+      const btn = document.getElementById('recBtn');
+      if (btn) { btn.className='tool-btn rec'; btn.innerHTML='<span class="rec-dot"></span> Stop recording'; }
+    } catch(e) { showToast('Microphone denied — please allow mic access in browser settings.'); }
   } else {
-    mediaRec.stop();isRec=false;
-    const btn=document.getElementById('recBtn');
-    if(btn){btn.className='tool-btn';btn.innerHTML='🎙 Voice note';}
+    mediaRec.stop(); isRec = false;
+    const btn = document.getElementById('recBtn');
+    if (btn) { btn.className='tool-btn'; btn.innerHTML='🎙 Voice note'; }
   }
 }
 
-// ─── SAVE / DELETE ───
-function saveEntry(){
-  const date=document.getElementById('eDate')?.value;
-  const title=document.getElementById('eTitle')?.value.trim()||'';
-  const body=document.getElementById('eBody')?.value.trim()||'';
-  if(!date){showToast('Please choose a date.');return;}
-
-  // If new, assign real id
-  if(currentEntryId&&currentEntryId.startsWith('new_')){
-    currentEntryId='e_'+Date.now();
-    currentEntry.id=currentEntryId;
-  }
-  const entry={...currentEntry,id:currentEntryId,date,title,body,updated:new Date().toISOString()};
-  entries[currentEntryId]=entry;
-  currentEntry=JSON.parse(JSON.stringify(entry));
-
-  // Persist
-  const ukey=getUserDataKey();
-  localStorage.setItem(ukey,JSON.stringify(entries));
-  if(gdriveToken) syncToDrive();
-  showToast('Entry saved ✓');
+// ── SAVE / DELETE ────────────────────────────────────────────
+async function saveEntry() {
+  const date = document.getElementById('eDate')?.value;
+  const title = document.getElementById('eTitle')?.value.trim() || '';
+  const body = document.getElementById('eBody')?.value.trim() || '';
+  if (!date) { showToast('Please choose a date.'); return; }
+  if (currentEntryId?.startsWith('new_')) { currentEntryId = 'e_'+Date.now(); currentEntry.id = currentEntryId; }
+  const entry = {...currentEntry, id:currentEntryId, date, title, body, updated:new Date().toISOString()};
+  entries[currentEntryId] = entry;
+  currentEntry = JSON.parse(JSON.stringify(entry));
+  localSave();
+  if (gToken) await syncToDrive();
+  showToast(gToken ? 'Saved & synced to Drive ✓' : 'Saved locally ✓');
   refreshSidebar();
-  // re-render to update delete button
   renderEditorUI(currentEntry);
 }
 
-function deleteEntry(){
-  if(!confirm('Delete this entry permanently?'))return;
+async function deleteEntry() {
+  if (!confirm('Delete this entry permanently?')) return;
   delete entries[currentEntryId];
-  localStorage.setItem(getUserDataKey(),JSON.stringify(entries));
-  if(gdriveToken) syncToDrive();
-  currentEntryId=null;currentEntry={media:[],voices:[]};
-  showEditor(false);
-  refreshSidebar();
+  localSave();
+  if (gToken) await syncToDrive();
+  currentEntryId = null; currentEntry = {media:[],voices:[]};
+  resetEditor(); refreshSidebar();
   showToast('Entry deleted.');
 }
 
-function showEditor(show){
-  if(!show){
-    document.getElementById('editorWrap').innerHTML=`<div class="editor-empty"><div class="editor-empty-icon">✦</div><div style="font-size:15px;font-weight:500">Pick a day or start writing</div><div style="font-size:13px">Your thoughts, always with you</div></div>`;
+function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
+
+// ── BOOT ─────────────────────────────────────────────────────
+(async function init() {
+  applyTheme(themeMode);
+  // Check if Google redirected back with token
+  if (location.hash.includes('access_token=')) {
+    await handleGoogleCallback();
   }
-}
-
-// ─── SIDEBAR TOGGLE (mobile) ───
-function toggleSidebar(){
-  document.getElementById('sidebar').classList.toggle('open');
-}
-
-// ─── TOAST ───
-function showToast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg;t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2400);
-}
-
-// ─── INIT ───
-// Fix login: load entries from user-specific key after login
-const _origHandleLogin=handleLogin;
-// Override handleLogin to load from getUserDataKey after auth
-window.handleLogin=async function(){
-  const user=document.getElementById('loginUser').value.trim();
-  const pass=document.getElementById('loginPass').value.trim();
-  const err=document.getElementById('loginErr');
-  if(!user||!pass){err.textContent='Please enter both fields.';return;}
-
-  const usersRaw=localStorage.getItem('dd_users');
-  const users=usersRaw?JSON.parse(usersRaw):{};
-  const ukey='dd_u_'+hashStr(user);
-
-  if(isSignup){
-    if(users[ukey]){err.textContent='Username already taken.';return;}
-    users[ukey]={hash:hashStr(pass)};
-    localStorage.setItem('dd_users',JSON.stringify(users));
-    showToast('Account created! Welcome.');
-  } else {
-    if(!users[ukey]||users[ukey].hash!==hashStr(pass)){
-      err.textContent='Wrong username or password.';return;
-    }
-  }
-  currentUser=user;
-  const raw=localStorage.getItem('dd_data_'+hashStr(user));
-  entries=raw?JSON.parse(raw):{};
-  err.textContent='';
-  document.getElementById('loginUser').value='';
-  document.getElementById('loginPass').value='';
-  openApp();
-};
-
-checkGDriveCallback();
-
-// Apply saved theme pills on load
-document.querySelectorAll('.theme-pill').forEach(b=>b.classList.toggle('active',b.dataset.t===themeMode));
+})();
 </script>
-
-<!--
-════════════════════════════════════════════════
-  HOW TO SET UP GOOGLE DRIVE SYNC (FREE)
-════════════════════════════════════════════════
-
-1. Go to https://console.cloud.google.com
-2. Create a new project (e.g. "My Diary App")
-3. Go to "APIs & Services" → "Library"
-   → Search "Google Drive API" → Enable it
-4. Go to "APIs & Services" → "Credentials"
-   → Click "Create Credentials" → "OAuth 2.0 Client ID"
-   → Application type: Web application
-   → Name: Dear Diary
-   → Authorised JavaScript origins: Add the URL where you host this file
-     (e.g. http://localhost:8080 or https://yourdomain.com)
-   → Click Create → Copy the Client ID
-5. In this file, replace:
-     const GDRIVE_CLIENT_ID = '950704118337-14ppm2ovunjr1fg0deutr64id3cesui3.apps.googleusercontent.com';
-   with your actual Client ID (looks like: 123456789-abc....apps.googleusercontent.com)
-
-HOW TO USE AS AN APP ON YOUR PHONE (PWA):
-──────────────────────────────────────────
-Option A — Host it free on GitHub Pages:
-  1. Create a free GitHub account at github.com
-  2. Create a new repository → upload this file as "index.html"
-  3. Go to repo Settings → Pages → Source: main branch
-  4. Your app URL: https://yourusername.github.io/repositoryname
-  5. Open that URL on your phone → browser menu → "Add to Home Screen"
-  → It installs like a real app!
-
-Option B — Run locally on your computer:
-  1. Open a terminal / command prompt
-  2. cd to the folder with this file
-  3. Run: python3 -m http.server 8080
-  4. Open http://localhost:8080/dear_diary.html in your browser
-  5. Microphone, camera, Drive all work here!
-
-HOW DATA IS STORED (no subscription needed):
-─────────────────────────────────────────────
-• Without Drive: Data saves in your browser's localStorage.
-  Safe on that device, but not cross-device.
-• With Drive: Data saves as a JSON file in your Google Drive
-  (hidden app folder, not visible in My Drive). Works everywhere!
-
-════════════════════════════════════════════════
--->
 </body>
 </html>
