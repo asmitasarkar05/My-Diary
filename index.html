@@ -6,6 +6,29 @@
 <meta name="theme-color" content="#0e0e0c">
 <title>Dear Diary</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23faf7f2'/><text y='72' x='50' text-anchor='middle' font-size='62' font-family='Georgia,serif' fill='%239a7c3f'>✦</text></svg>">
+<script>
+// Inline PWA manifest
+const manifest = {
+  name: "Dear Diary",
+  short_name: "Diary",
+  description: "Your private personal journal",
+  start_url: "./",
+  display: "standalone",
+  background_color: "#faf7f2",
+  theme_color: "#9a7c3f",
+  orientation: "portrait-primary",
+  icons: [
+    { src: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='40' fill='%23faf7f2'/><text y='140' x='96' text-anchor='middle' font-size='120' font-family='Georgia' fill='%239a7c3f'>✦</text></svg>", sizes: "192x192", type: "image/svg+xml" },
+    { src: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='100' fill='%23faf7f2'/><text y='370' x='256' text-anchor='middle' font-size='320' font-family='Georgia' fill='%239a7c3f'>✦</text></svg>", sizes: "512x512", type: "image/svg+xml" }
+  ]
+};
+const blob = new Blob([JSON.stringify(manifest)], {type:'application/json'});
+const murl = URL.createObjectURL(blob);
+const ml = document.createElement('link');
+ml.rel = 'manifest'; ml.href = murl;
+document.currentScript.parentNode.insertBefore(ml, document.currentScript);
+</script>
 <style>
 /* ══════════════════════════════════════════
    DESIGN TOKENS
@@ -55,40 +78,52 @@ input,textarea{font-family:var(--sans);color:var(--ink);border:none;outline:none
 /* ══════════════════════════════════════════
    FLOATING THEME SWITCHER
 ══════════════════════════════════════════ */
-.theme-float{
-  position:fixed;top:1.1rem;right:1.1rem;z-index:200;
-  display:flex;gap:2px;
-  background:var(--card);border:1px solid var(--border);
-  border-radius:30px;padding:3px;box-shadow:var(--sh);
+.login-theme-row{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:1.25rem;padding-top:1rem;
+  border-top:1px solid var(--border);
 }
-.tp{
+.login-theme-label{
+  font-size:11px;color:var(--ink4);
+  letter-spacing:.1em;text-transform:uppercase;
+}
+.login-theme-btns{
+  display:flex;gap:3px;
+  background:var(--pg2);border:1px solid var(--border);
+  border-radius:30px;padding:3px;
+}
+.ltp{
   width:26px;height:26px;border-radius:50%;font-size:12px;
   display:flex;align-items:center;justify-content:center;
-  color:var(--ink3);transition:all var(--ease);
+  color:var(--ink3);transition:all var(--ease);border:none;
+  background:none;cursor:pointer;
 }
-.tp.on{background:var(--pg3);color:var(--ink);}
-.tp:hover:not(.on){color:var(--ink2);}
+.ltp.on{background:var(--card);color:var(--ink);box-shadow:var(--sh);}
+.ltp:hover:not(.on){color:var(--ink2);}
 
 /* ══════════════════════════════════════════
    LOGIN SCREEN
 ══════════════════════════════════════════ */
 #loginScreen{
-  align-items:center;justify-content:center;
+  align-items:center;justify-content:flex-start;
   background:var(--pg);
   background-image:
     radial-gradient(ellipse 70% 50% at 50% -5%, rgba(154,124,63,.16) 0%, transparent 65%),
     radial-gradient(ellipse 40% 30% at 80% 90%, rgba(61,99,81,.08) 0%, transparent 60%);
   padding:2rem 1rem;
+  overflow-y:auto;
+  min-height:100vh;
 }
 .login-card{
   width:100%;max-width:368px;
   background:var(--card);border:1px solid var(--border);
-  border-radius:var(--r-xl);padding:3rem 2.5rem 2.25rem;
+  border-radius:var(--r-xl);padding:2.5rem 2.25rem 2rem;
   box-shadow:var(--sh-lg);animation:fadeUp .45s ease both;
+  margin:auto;
 }
 
 /* Emblem */
-.emblem{text-align:center;margin-bottom:2.25rem;user-select:none;}
+.emblem{text-align:center;margin-bottom:1.5rem;user-select:none;}
 .emblem-ornament{
   display:inline-block;
   font-family:var(--serif);font-size:2rem;color:var(--gold);
@@ -171,6 +206,13 @@ input,textarea{font-family:var(--sans);color:var(--ink);border:none;outline:none
 .btn-google:hover{border-color:var(--border2);background:var(--pg3);transform:translateY(-1px);}
 .btn-google svg{width:16px;height:16px;flex-shrink:0;}
 .login-note{font-size:11px;color:var(--ink4);text-align:center;margin-top:.7rem;line-height:1.65;}
+.theme-row{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:1.25rem;padding-top:1rem;
+  border-top:1px solid var(--border);
+}
+.theme-row-label{font-size:11px;color:var(--ink4);letter-spacing:.07em;text-transform:uppercase;}
+.theme-row-btns{display:flex;gap:2px;background:var(--pg2);border-radius:20px;padding:2px;}
 
 /* ══════════════════════════════════════════
    APP TOPBAR
@@ -633,12 +675,6 @@ input,textarea{font-family:var(--sans);color:var(--ink);border:none;outline:none
 <body>
 
 <!-- Floating theme -->
-<div class="theme-float">
-  <button class="tp" data-t="light" onclick="setTheme('light')" title="Light">☀</button>
-  <button class="tp" data-t="dark"  onclick="setTheme('dark')"  title="Dark">☽</button>
-  <button class="tp" data-t="system" onclick="setTheme('system')" title="System">◑</button>
-</div>
-
 <!-- ══════════════ LOGIN ══════════════ -->
 <div id="loginScreen" class="screen active">
   <div class="login-card">
@@ -701,6 +737,15 @@ input,textarea{font-family:var(--sans);color:var(--ink);border:none;outline:none
       Sign in with Google
     </button>
     <p class="login-note">Google sign-in keeps your diary synced across all devices for free.</p>
+
+    <div class="login-theme-row">
+      <span class="login-theme-label">Theme</span>
+      <div class="login-theme-btns">
+        <button class="ltp" data-t="light" onclick="setTheme('light')" title="Light">☀</button>
+        <button class="ltp" data-t="dark"  onclick="setTheme('dark')"  title="Dark">☽</button>
+        <button class="ltp" data-t="system" onclick="setTheme('system')" title="System">◑</button>
+      </div>
+    </div>
 
   </div>
 </div>
@@ -781,7 +826,7 @@ let theme=localStorage.getItem('dd_t')||'light';
 function applyTheme(m){
   const dark=m==='dark'||(m==='system'&&matchMedia('(prefers-color-scheme:dark)').matches);
   document.body.setAttribute('data-theme',dark?'dark':'light');
-  document.querySelectorAll('.tp').forEach(b=>b.classList.toggle('on',b.dataset.t===m));
+  document.querySelectorAll('.tp,.ltp').forEach(b=>b.classList.toggle('on',b.dataset.t===m));
   const tb=document.getElementById('themeBtn');
   if(tb)tb.textContent=m==='dark'?'☽':m==='system'?'◑':'☀';
 }
